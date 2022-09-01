@@ -2,18 +2,27 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 )
 
-func main() {
-	xs := []float64{1, 2, 3, 4, 5}
-	fmt.Println(Average(xs))
+func hello(w http.ResponseWriter, req *http.Request) {
+
+	fmt.Fprintf(w, "hello\n")
 }
 
-func Average(xs []float64) float64 {
-	total := 0.0
-	for _, x := range xs {
-		total += x
+func headers(w http.ResponseWriter, req *http.Request) {
+
+	for name, headers := range req.Header {
+		for _, h := range headers {
+			fmt.Fprintf(w, "%v: %v\n", name, h)
+		}
 	}
-	xs[0] = 5
-	return total / float64(len(xs))
+}
+
+func main() {
+
+	http.HandleFunc("/hello", hello)
+	http.HandleFunc("/headers", headers)
+
+	http.ListenAndServe(":8090", nil)
 }
