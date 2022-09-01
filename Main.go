@@ -6,8 +6,7 @@ import (
 )
 
 func hello(w http.ResponseWriter, req *http.Request) {
-
-	fmt.Fprintf(w, "hello\n")
+	w.Write([]byte("Hello \nplease Enter (https://localhost:8090/goByExamples)!"))
 }
 
 func headers(w http.ResponseWriter, req *http.Request) {
@@ -21,8 +20,7 @@ func headers(w http.ResponseWriter, req *http.Request) {
 
 func main() {
 
-	http.HandleFunc("/hello", hello)
-	http.HandleFunc("/headers", headers)
-
+	http.HandleFunc("/", hello)
+	http.HandleFunc("/goByExamples", headers)
 	http.ListenAndServe(":8090", nil)
 }
