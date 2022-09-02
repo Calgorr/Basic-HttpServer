@@ -11,12 +11,11 @@ func hello(w http.ResponseWriter, req *http.Request) {
 }
 
 func headers(w http.ResponseWriter, r *http.Request) {
-	bytes, err := ioutil.ReadFile("index.html")
+	bytes, err := ioutil.ReadFile("index/index.html")
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Fprintf(w, string(bytes))
-	fmt.Print("salam")
 }
 
 func main() {
