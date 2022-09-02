@@ -7,7 +7,7 @@ import (
 )
 
 func hello(w http.ResponseWriter, req *http.Request) {
-	w.Write([]byte("Hello \nplease Enter (https://localhost:8090/goByExamples)!"))
+	w.Write([]byte("Hello \nplease Enter (http://localhost:8090/goByExamples)!"))
 }
 
 func headers(w http.ResponseWriter, r *http.Request) {
